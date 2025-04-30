@@ -11,7 +11,6 @@ declare global {
 
 interface FetchEvent extends Event {
   readonly request: Request;
-  readonly resultingClientId: string;
   respondWith(r: Response | PromiseLike<Response>): void;
 }
 
