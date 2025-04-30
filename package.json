@@ -11,6 +11,9 @@
         "examples/js-app",
         "examples/wasi-http-app"
     ],
+    "engines": {
+        "node": ">=22"
+    },
     "scripts": {
         "build": "npm run build --workspaces --if-present",
         "check": "npm run check --workspaces --if-present",
