@@ -4,17 +4,13 @@
     "lib": ["es2022", "DOM"],
     "module": "es2022",
     "moduleResolution": "bundler",
-    "paths": {
-      "wasi:keyvalue/store@0.2.0-draft": ["./objs/types/interfaces/wasi-keyvalue-store.d.ts"],
-    },
-    "outDir": "./objs/bundled",
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "hono/jsx",
   },
-  "include": ["./src/"]
+  "include": ["./src/", "./objs/types/"]
 }

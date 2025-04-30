@@ -4,16 +4,11 @@
     "lib": ["es2022", "DOM"],
     "module": "es2022",
     "moduleResolution": "bundler",
-    "paths": {
-      "wasi:http/types@0.2.3": [ "./objs/types/interfaces/wasi-http-types.d.ts" ],
-      "wasi:http/incoming-handler@0.2.3": [ "./objs/types/interfaces/wasi-http-incoming-handler.d.ts" ],
-    },
-    "outDir": "./objs/bundled",
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "noEmit": true
+    "noEmit": true,
   },
-  "include": ["./src/"]
+  "include": ["./src/", "./objs/types/"]
 }

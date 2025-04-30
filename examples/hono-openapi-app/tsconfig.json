@@ -4,16 +4,13 @@
     "lib": ["es2022", "DOM"],
     "module": "es2022",
     "moduleResolution": "bundler",
-    "paths": {
-    },
-    "outDir": "./objs/bundled",
     "verbatimModuleSyntax": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "jsxImportSource": "hono/jsx"
+    "jsxImportSource": "hono/jsx",
   },
-  "include": ["./src/"]
+  "include": ["./src/", "./objs/types/"]
 }
