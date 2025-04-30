@@ -1,0 +1,39 @@
+{
+  "name": "hono-wasi-keyvalue-app",
+  "version": "1.0.0",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "build:wit": "wkg wit fetch || wash wit deps || echo \"wkg and wash failed, skipping wit fetch\"",
+    "build:wit:types": "jco guest-types wit -o objs/types",
+    "build:js": "rollup -c rollup.config.js",
+    "build:wasm": "mkdirp dist && jco componentize -w wit -o dist/main.wasm objs/bundled/main.js",
+    "build": "node --run build:wit && node --run build:wit:types && node --run build:js && node --run build:wasm",
+    "build-wash:sign": "wash build --sign-only --config-path wasmcloud.toml",
+    "build-wash": "node --run build && node --run build-wash:sign",
+    "start-jco": "jco serve --jco-dir objs/jco-serve dist/main.wasm",
+    "start-wasmtime": "wasmtime serve --addr 127.0.0.1:8000 -S cli=y -S keyvalue=y dist/main.wasm",
+    "start-wash": "mkdirp objs/wadm && wash dev --manifest-output-dir ./objs/wadm",
+    "start-wash-verbose": "export WASMCLOUD_LOG_LEVEL=trace && node --run start-wash",
+    "clean-wash": "wash down --all && wash up -d && wash down --purge-jetstream all && wash drain all",
+    "start-node": "rollup -c rollup.config.node.js && node objs/bundled/main-node.js",
+    "benchmark-key-get": "ab -n 1000 -c 10 http://127.0.0.1:8000/key/my-key",
+    "benchmark-key-set": "ab -n 1000 -c 10 -p benchmark/set-key.json -T \"application/json\" http://127.0.0.1:8000/key",
+    "clean": "git clean -fdx -e '.env.*'",
+    "check": "tsc"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "1.10.2",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "mkdirp": "^3.0.1",
+    "rollup": "^4.34.8",
+    "rollup-plugin-dotenv": "^0.5.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.8",
+    "hono": "^4.7.2",
+    "tslib": "^2.8.1"
+  }
+}

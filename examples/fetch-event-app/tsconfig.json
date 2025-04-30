@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es2022",
+    "lib": ["es2022", "DOM"],
+    "types": ["node"],
+    "module": "es2022",
+    "moduleResolution": "bundler",
+    "paths": {
+    },
+    "outDir": "./objs/bundled",
+    "verbatimModuleSyntax": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "strict": true,
+    "noEmit": true,
+    // Using lib webworker, lib DOM, and jsx result
+    // in conflicts forcing skipLibCheck
+    "skipLibCheck": true
+  },
+  "include": ["./src/"]
+}

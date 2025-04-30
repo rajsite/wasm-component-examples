@@ -1,0 +1,4 @@
+name = "js-app"
+language = "typescript"
+type = "component"
+version = "1.0.0"

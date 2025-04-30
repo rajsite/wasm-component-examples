@@ -1,0 +1,24 @@
+{
+    "name": "wasm-component-examples",
+    "version": "1.0.0",
+    "private": true,
+    "workspaces": [
+        "examples/fetch-event-app",
+        "examples/hono-app",
+        "examples/hono-features-app",
+        "examples/hono-openapi-app",
+        "examples/hono-wasi-keyvalue-app",
+        "examples/js-app",
+        "examples/wasi-http-app"
+    ],
+    "scripts": {
+        "build": "npm run build --workspaces --if-present",
+        "check": "npm run check --workspaces --if-present",
+        "lint": "eslint .",
+        "format": "eslint . --fix",
+        "clean": "git clean -fdx -e '.env.*'"
+    },
+    "devDependencies": {
+        "@ni/eslint-config-typescript": "^4.4.2"
+    }
+}

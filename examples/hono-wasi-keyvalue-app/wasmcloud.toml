@@ -1,0 +1,12 @@
+name = "hono-wasi-keyvalue-app"
+language = "typescript"
+type = "component"
+version = "1.0.0"
+
+[component]
+wit_world = "main-world"
+wasm_target = "wasm32-wasip2"
+
+build_command = "npm run build-wash"
+build_artifact = "dist/main.wasm"
+destination = "objs/wasm-signed/main.wasm"
