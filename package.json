@@ -7,6 +7,7 @@
         "examples/hono-app",
         "examples/hono-features-app",
         "examples/hono-openapi-app",
+        "examples/hono-run-cli-app",
         "examples/hono-wasi-keyvalue-app",
         "examples/js-app",
         "examples/wasi-http-app"
