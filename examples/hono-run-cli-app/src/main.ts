@@ -6,6 +6,7 @@ import { app } from './lib/app';
 export { preopens } from '@bytecodealliance/preview2-shim/filesystem';
 
 const filesystemErrorCode: typeof FilesystemErrorCode = (err): never => {
+  // eslint-disable-next-line @typescript-eslint/no-throw-literal
   throw err;
 };
 export const types = {
