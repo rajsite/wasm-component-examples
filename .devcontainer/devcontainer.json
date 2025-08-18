@@ -3,7 +3,7 @@
   "features": {
     "ghcr.io/devcontainers/features/node:1": {},
     "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall:0": {
-      "packages": "wkg"
+      "packages": "wkg,wasmtime-cli"
     }
   }
 }
