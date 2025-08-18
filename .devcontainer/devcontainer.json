@@ -2,8 +2,10 @@
   "image": "mcr.microsoft.com/devcontainers/universal:2",
   "features": {
     "ghcr.io/devcontainers/features/node:1": {},
-    "ghcr.io/lee-orr/rusty-dev-containers/cargo-binstall:0": {
-      "packages": "wkg,wasmtime-cli"
-    }
+    "ghcr.io/devcontainers/features/rust:1": {}
+  },
+  "onCreateCommand": {
+    "npm:deps": "npm install",
+    "binstall": "cargo install cargo-binstall"
   }
 }
