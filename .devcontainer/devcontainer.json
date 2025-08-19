@@ -1,0 +1,7 @@
+{
+  "image": "mcr.microsoft.com/devcontainers/universal:2",
+  "postCreateCommand": {
+    "node setup": "npm install",
+    "linux setup": "npm run setup-linux"
+  }
+}
