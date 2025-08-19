@@ -2,3 +2,4 @@
 /dist/
 /objs/
 /wit/deps/
+*.tgz

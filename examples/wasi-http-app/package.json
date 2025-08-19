@@ -16,6 +16,8 @@
     "start-wash": "mkdirp objs/wadm && wash dev --manifest-output-dir ./objs/wadm",
     "start-wash-verbose": "export WASMCLOUD_LOG_LEVEL=trace && node --run start-wash",
     "clean-wash": "wash down --all && wash up -d && wash down --purge-jetstream all && wash drain all",
+    "pack": "npm pack",
+    "clean": "git clean -fdx -e '.env.*'",
     "check": "tsc"
   },
   "devDependencies": {

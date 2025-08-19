@@ -18,6 +18,7 @@
     "clean-wash": "wash down --all && wash up -d && wash down --purge-jetstream all && wash drain all",
     "start-node": "rollup -c rollup.config.node.js && node objs/bundled/main-node.js",
     "benchmark-stats": "ab -n 100 -c 10 -p benchmark/data.json -T \"application/json\" http://127.0.0.1:8000/stats",
+    "pack": "npm pack",
     "clean": "git clean -fdx -e '.env.*'",
     "check": "tsc"
   },

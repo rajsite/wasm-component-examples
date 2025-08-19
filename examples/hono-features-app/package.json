@@ -17,6 +17,7 @@
     "start-wash-verbose": "export WASMCLOUD_LOG_LEVEL=trace && node --run start-wash",
     "clean-wash": "wash down --all && wash up -d && wash down --purge-jetstream all && wash drain all",
     "start-node": "rollup -c rollup.config.node.js && node objs/bundled/main-node.js",
+    "pack": "npm pack",
     "clean": "git clean -fdx -e '.env.*'",
     "check": "tsc"
   },
