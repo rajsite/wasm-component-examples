@@ -1,0 +1,57 @@
+name: 'main'
+
+on:
+  pull_request:
+  push:
+    branches:
+      - '**'
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  LC_ALL: "en_US.UTF-8"
+  LANG: "en_US.UTF-8"
+  LANGUAGE: "en_US.UTF-8"
+  TZ: "America/Chicago"
+
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      # Install dependencies
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          registry-url: 'https://registry.npmjs.org'
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run setup-linux
+
+      # print a log of outdated npm dependencies
+      # only informational so swallow error codes
+      - run: npm outdated || exit 0
+
+      # Build
+      - run: npm run build
+
+      # Pack
+      - run: npm run pack
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: |
+            examples/**/*.tgz
+          if-no-files-found: error
+
+      - name: Validate no changes to tracked files
+        run: |
+          echo print files with changes:
+          git diff-index --ignore-space-at-eol --stat HEAD
+          echo print diff or blank if no changes:
+          git diff
+          echo exit with error if there are changes.
+          git diff-index --quiet --ignore-space-at-eol --stat HEAD
