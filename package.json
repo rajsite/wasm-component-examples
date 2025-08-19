@@ -19,7 +19,11 @@
         "check": "npm run check --workspaces --if-present",
         "lint": "eslint .",
         "format": "eslint . --fix",
-        "clean": "git clean -fdx -e '.env.*'"
+        "clean": "git clean -fdx -e '.env.*'",
+        "setup-linux": "npm run setup-linux:rust && npm run setup-linux:binstall && npm run setup-linux:binstall:packages",
+        "setup-linux:rust": "curl https://sh.rustup.rs -sSf | sh -s -- -y",
+        "setup-linux:binstall": "curl -L --proto '=https' --tlsv1.2 -sSf https://raw.githubusercontent.com/cargo-bins/cargo-binstall/main/install-from-binstall-release.sh | bash",
+        "setup-linux:binstall:packages": ". \"$HOME/.cargo/env\" && cargo binstall wasmtime-cli wkg wasm-tools -y"
     },
     "devDependencies": {
         "@ni/eslint-config-typescript": "^4.4.2"
