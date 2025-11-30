@@ -4,3 +4,4 @@
 /wit/deps/
 .env.*
 *.tgz
+.rollup.cache

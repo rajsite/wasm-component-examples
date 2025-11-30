@@ -128,9 +128,13 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
+# rollup
+.rollup.cache
+
 ## Project-specific
 
 # dotenv environment variable files
 # Note: In this project the .env files are not ignored and instead contain placeholder values.
 # The .env.* files are ignored and should be used to override placeholders.
 .env.*
+

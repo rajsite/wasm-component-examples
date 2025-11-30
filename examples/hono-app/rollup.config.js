@@ -1,14 +1,14 @@
-import typescript from '@rollup/plugin-typescript';
+import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
-import dotenv from 'rollup-plugin-dotenv';
+import typescript from '@rollup/plugin-typescript';
 
 export default {
-  input: 'src/main.ts',
-  external: /wasi:.*/,
-  output: {
-    dir: 'objs/bundled',
-    format: 'es',
-    sourcemap: true
-  },
-  plugins: [dotenv(), resolve(), typescript({ noEmitOnError: true })]
+    input: 'src/main.ts',
+    external: /wasi:.*/,
+    output: {
+        dir: 'dist',
+        format: 'es',
+        sourcemap: true
+    },
+    plugins: [commonjs(), resolve(), typescript({ noEmitOnError: true })]
 };

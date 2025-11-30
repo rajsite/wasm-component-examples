@@ -1,3 +1,4 @@
-import { app } from './lib/app';
+import { fire } from 'hono/service-worker';
+import { app } from './app';
 
-app.fire();
+fire(app);

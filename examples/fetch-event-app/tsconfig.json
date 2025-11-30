@@ -2,7 +2,7 @@
   "compilerOptions": {
     "target": "es2022",
     "lib": ["es2022", "DOM", "ESNext.Disposable"],
-    "types": ["node"],
+    "types": ["./dist/wasi-types/wit.d.ts", "node"],
     "module": "es2022",
     "moduleResolution": "bundler",
     "verbatimModuleSyntax": true,
@@ -10,6 +10,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "noEmit": true,
+    "incremental": true,
   },
-  "include": ["./src/", "./objs/types/"]
+  "include": ["./src/"]
 }

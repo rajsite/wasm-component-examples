@@ -3,3 +3,4 @@
 /objs/
 /wit/deps/
 *.tgz
+.rollup.cache

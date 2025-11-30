@@ -2,14 +2,10 @@
     "name": "wasm-component-examples",
     "version": "1.0.0",
     "private": true,
+    "type": "module",
     "workspaces": [
         "examples/fetch-event-app",
-        "examples/hono-app",
-        "examples/hono-features-app",
-        "examples/hono-openapi-app",
-        "examples/hono-wasi-keyvalue-app",
-        "examples/js-app",
-        "examples/wasi-http-app"
+        "examples/hono-app"
     ],
     "engines": {
         "node": ">=22"
@@ -27,6 +23,7 @@
         "setup-linux:binstall:packages": ". \"$HOME/.cargo/env\" && cargo binstall wasmtime-cli wkg wasm-tools wac-cli -y"
     },
     "devDependencies": {
-        "@ni/eslint-config-typescript": "^4.4.2"
+        "@ni/eslint-config-javascript": "^5.1.2",
+        "@ni/eslint-config-typescript": "^5.0.3"
     }
 }
