@@ -1,9 +1,8 @@
-import { createServer } from 'http';
-import { createServerAdapter } from '@whatwg-node/server';
+import { serve } from '@hono/node-server';
 import { handle } from './handle';
 
-const serverAdapter = createServerAdapter(handle);
-const nodeServer = createServer((req, res) => {
-    void serverAdapter(req, res);
+serve({
+    fetch: handle,
+    port: 8000,
+    hostname: '127.0.0.1'
 });
-nodeServer.listen(8000, '127.0.0.1');
