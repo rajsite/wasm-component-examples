@@ -4,6 +4,7 @@
     "private": true,
     "type": "module",
     "workspaces": [
+        "examples/cli-app",
         "examples/fetch-event-app",
         "examples/hono-app"
     ],

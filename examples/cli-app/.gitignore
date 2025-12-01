@@ -1,0 +1,6 @@
+/node_modules/
+/dist/
+/objs/
+/wit/deps/
+*.tgz
+.rollup.cache

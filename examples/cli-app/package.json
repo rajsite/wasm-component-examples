@@ -1,0 +1,31 @@
+{
+  "name": "cli-app",
+  "version": "1.0.0",
+  "private": "true",
+  "type": "module",
+  "scripts": {
+    "build:wit": "wkg wit fetch",
+    "build:wit:types": "jco guest-types wit -o dist/wasi-types",
+    "build:js": "rollup -c rollup.config.js",
+    "build:wasm": "jco componentize -w wit -n main-world -o dist/main.wasm dist/main.js",
+    "build": "npm run build:wit && npm run build:wit:types && npm run build:js && npm run build:wasm",
+    "start-wasmtime": "wasmtime run -S cli=y,http=y dist/main.wasm",
+    "start-node": "tsx src/main-node.ts",
+    "pack": "npm pack",
+    "clean": "git clean -fdx -e '.env.*'",
+    "check": "tsc"
+  },
+  "devDependencies": {
+    "@bytecodealliance/jco": "1.15.2",
+    "@rollup/plugin-commonjs": "^29.0.0",
+    "@rollup/plugin-node-resolve": "^16.0.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22",
+    "rollup": "^4.34.8",
+    "tsx": "^4.7.1",
+    "typescript": "^5.7.3"
+  },
+  "dependencies": {
+    "tslib": "^2.8.1"
+  }
+}
