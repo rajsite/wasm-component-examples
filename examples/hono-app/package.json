@@ -16,11 +16,11 @@
     "check": "tsc"
   },
   "devDependencies": {
-    "@bytecodealliance/jco": "1.15.2",
+    "@bytecodealliance/jco": "1.17.0",
     "@rollup/plugin-commonjs": "^29.0.0",
     "@rollup/plugin-node-resolve": "^16.0.0",
     "@rollup/plugin-typescript": "^12.1.2",
-    "@types/node": "^22",
+    "@types/node": "^24",
     "rollup": "^4.34.8",
     "tsx": "^4.7.1",
     "typescript": "^5.7.3"
