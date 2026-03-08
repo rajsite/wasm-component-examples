@@ -6,6 +6,7 @@
     "workspaces": [
         "examples/cli-app",
         "examples/fetch-event-app",
+        "examples/fs-app",
         "examples/hono-app"
     ],
     "engines": {
