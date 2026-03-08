@@ -1,5 +1,7 @@
 # FS App
 
+NOTE: WIP, not really useful yet
+
 Requires:
 - node
 - wasmtime (optional)

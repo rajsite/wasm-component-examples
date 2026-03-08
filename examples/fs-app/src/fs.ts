@@ -18,6 +18,9 @@ import type {
     NewTimestamp as WasiNewTimestamp,
 } from 'wasi:filesystem/types@0.2.3';
 import type { Pollable as WasiPollable } from 'wasi:io/streams@0.2.3';
+import type * as WasiFilesystemTypes from 'wasi:filesystem/types@0.2.3';
+import type * as WasiFilesystemPreopens from 'wasi:filesystem/preopens@0.2.3';
+
 
 export class Exit extends Error {
     constructor(public code: number = 0) {
@@ -248,28 +251,28 @@ class Directory {
     }
 }
 
-class ReadStream extends InputStream {
+class ReadInputStream extends InputStream {
     constructor(public file: File, public offset: bigint) {
         super();
         this.file = file;
         this.offset = offset;
     }
 
-    read(len: bigint): Uint8Array {
+    override read(len: bigint): Uint8Array {
         const data = this.file.data.subarray(Number(this.offset), Number(this.offset + len));
         this.offset += len;
         return data;
     }
 }
 
-class WriteStream extends OutputStream {
+class WriteOutputStream extends OutputStream {
     constructor(public file: File, public offset: bigint) {
         super();
         this.file = file;
         this.offset = offset;
     }
 
-    write(contents: Uint8Array): void {
+    override write(contents: Uint8Array): void {
         const offset = Number(this.offset);
         const newData = new Uint8Array(Math.max(this.file.data.length, offset + contents.length));
         newData.set(this.file.data);
@@ -280,7 +283,8 @@ class WriteStream extends OutputStream {
 }
 
 class Descriptor implements WasiDescriptor {
-    constructor(public entry: Directory | File) {
+    // TODO created default value to satisfy type but should be unused
+    constructor(public entry: Directory | File = new Directory()) {
         this.entry = entry;
     }
     appendViaStream(): WasiOutputStream {
@@ -393,11 +397,11 @@ class Descriptor implements WasiDescriptor {
         return [this.entry.data.subarray(offset, offset + length), offset + length >= this.entry.data.byteLength];
     }
 
-    readViaStream(offset: bigint): ReadStream {
+    readViaStream(offset: bigint): ReadInputStream {
         if (this.entry instanceof Directory) {
             throw 'is-directory';
         }
-        return new ReadStream(this.entry, offset);
+        return new ReadInputStream(this.entry, offset);
     }
 
     write(_buffer: Uint8Array, _offset: bigint): bigint {
@@ -408,11 +412,11 @@ class Descriptor implements WasiDescriptor {
         throw 'unsupported';
     }
 
-    writeViaStream(offset: bigint): WriteStream {
+    writeViaStream(offset: bigint): WriteOutputStream {
         if (this.entry instanceof Directory) {
             throw 'is-directory';
         }
-        return new WriteStream(this.entry, offset);
+        return new WriteOutputStream(this.entry, offset);
     }
 
     setSize(s: bigint): void {
@@ -489,7 +493,8 @@ class Descriptor implements WasiDescriptor {
 class DirectoryEntryStream implements WasiDirectoryEntryStream {
     entries: [string, File | Directory][];
     index: number;
-    constructor(directory: Directory) {
+    // TODO created default value to satisfy type but should be unused
+    constructor(directory: Directory = new Directory()) {
         this.entries = Object.entries(directory.files);
         this.index = 0;
     }
@@ -660,3 +665,17 @@ export class Environment {
         this.standardErrorStream.callback = callback;
     }
 }
+
+const root: Directory = new Directory({});
+
+export const preopens = {
+    getDirectories: () => {
+        return [[new Descriptor(root), '/']];
+    }
+} satisfies typeof WasiFilesystemPreopens;
+
+export const types = {
+    filesystemErrorCode: () => undefined,
+    Descriptor,
+    DirectoryEntryStream,
+} satisfies typeof WasiFilesystemTypes;
