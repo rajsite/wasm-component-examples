@@ -55,3 +55,7 @@ jobs:
           git diff
           echo exit with error if there are changes.
           git diff-index --quiet --ignore-space-at-eol --stat HEAD
+
+      # Publish results
+      - uses: charpeni/turborepo-summary-action@v1
+        if: always()

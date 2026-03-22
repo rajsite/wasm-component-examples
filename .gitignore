@@ -131,6 +131,8 @@ dist
 # rollup
 .rollup.cache
 
+.turbo
+
 ## Project-specific
 
 # dotenv environment variable files
