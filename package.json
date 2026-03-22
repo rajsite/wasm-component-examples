@@ -4,20 +4,18 @@
     "private": true,
     "type": "module",
     "workspaces": [
-        "examples/cli-app",
-        "examples/fetch-event-app",
-        "examples/fs-app",
-        "examples/hono-app"
+        "examples/*"
     ],
+    "packageManager": "npm@11.0.0",
     "engines": {
-        "node": ">=22"
+        "node": ">=24"
     },
     "scripts": {
-        "build": "npm run build --workspaces --if-present",
-        "check": "npm run check --workspaces --if-present",
+        "build": "turbo run build --log-order=grouped --continue=dependencies-successful",
+        "check": "turbo run check --log-order=grouped --continue=dependencies-successful",
+        "pack": "turbo run pack --log-order=grouped --continue=dependencies-successful",
         "lint": "eslint .",
         "format": "eslint . --fix",
-        "pack": "npm run pack --workspaces --if-present",
         "clean": "git clean -fdx -e '.env.*'",
         "setup-linux": "npm run setup-linux:rust && npm run setup-linux:binstall && npm run setup-linux:binstall:packages",
         "setup-linux:rust": "curl https://sh.rustup.rs -sSf | sh -s -- --profile minimal -y",
@@ -26,6 +24,7 @@
     },
     "devDependencies": {
         "@ni/eslint-config-javascript": "^5.1.2",
-        "@ni/eslint-config-typescript": "^5.0.3"
+        "@ni/eslint-config-typescript": "^5.0.3",
+        "turbo": "^2.8.20"
     }
 }
