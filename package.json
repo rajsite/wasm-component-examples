@@ -11,7 +11,7 @@
         "node": ">=24"
     },
     "scripts": {
-        "build": "turbo run build --log-order=grouped --continue=dependencies-successful",
+        "build": "turbo run build-wit build-wasm --log-order=grouped --continue=dependencies-successful",
         "check": "turbo run check --log-order=grouped --continue=dependencies-successful",
         "pack": "turbo run pack --log-order=grouped --continue=dependencies-successful",
         "lint": "eslint .",

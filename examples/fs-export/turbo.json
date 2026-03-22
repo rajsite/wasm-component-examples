@@ -1,0 +1,14 @@
+{
+    "$schema": "https://turborepo.com/schema.json",
+    "extends": ["//"],
+    "tasks": {
+        "build-wit": {
+            "inputs": ["wit/**/*.wit", "!wit/deps/**/*.wit"],
+            "outputs": ["wit/deps/**/*.wit", "dist/wasi-types/**/*.d.ts"]
+        },
+        "build-wasm": {
+            "dependsOn": ["build-wit", "^build-wasm"],
+            "cache": false
+        }
+    }
+}
