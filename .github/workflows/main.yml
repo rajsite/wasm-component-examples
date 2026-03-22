@@ -15,6 +15,7 @@ env:
   LANG: "en_US.UTF-8"
   LANGUAGE: "en_US.UTF-8"
   TZ: "America/Chicago"
+  TURBO_RUN_SUMMARY: true
 
 jobs:
   build:
