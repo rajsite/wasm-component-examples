@@ -9,8 +9,7 @@
     "build": "npm run build-wit && npm run build-wasm",
     "start-wasmtime": "wasmtime run -S cli=y,http=y dist/main.wasm",
     "pack": "npm pack",
-    "clean": "git clean -fdx -e '.env.*'",
-    "check": "tsc"
+    "clean": "git clean -fdx -e '.env.*'"
   },
   "dependencies": {
     "fs-export": "*",
