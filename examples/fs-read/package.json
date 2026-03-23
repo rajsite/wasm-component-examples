@@ -8,7 +8,6 @@
     "build-wasm": "rollup -c rollup.config.js && jco componentize -w wit -n main-world --disable http --disable fetch-event -o dist/main.wasm dist/main.js",
     "build": "npm run build-wit && npm run build-wasm",
     "start-wasmtime": "wasmtime run -S cli=y --dir ./test dist/main.wasm",
-    "start-node": "tsx src/main-node.ts",
     "pack": "npm pack",
     "clean": "git clean -fdx -e '.env.*'",
     "check": "tsc"
@@ -20,7 +19,6 @@
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/node": "^24",
     "rollup": "^4.34.8",
-    "tsx": "^4.7.1",
     "typescript": "^5.7.3"
   },
   "dependencies": {

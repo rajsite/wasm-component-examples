@@ -3,8 +3,7 @@
     "extends": ["//"],
     "tasks": {
         "build-wit": {
-            "inputs": ["wit/**/*.wit", "!wit/deps/**/*.wit"],
-            "outputs": ["wit/deps/**/*.wit", "dist/wasi-types/**/*.d.ts"]
+            "cache": false
         },
         "build-wasm": {
             "dependsOn": ["build-wit", "^build-wasm"],
