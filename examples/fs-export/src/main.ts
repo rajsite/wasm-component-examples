@@ -1,6 +1,6 @@
 import type { run as Run } from 'wasi:cli/run@0.2.3';
 import { run as runIn } from 'wasi:cli/run@0.2.3';
-import { handle } from './handle';
+// import { handle } from './handle';
 
 export { preopens, types } from './fs';
 
@@ -9,11 +9,13 @@ export const run: {
 } = {
     run: () => {
         void (async (): Promise<void> => {
-            console.log('run parent');
+            console.log('start run outer');
+            console.log('start call run inner');
             runIn();
-            console.log('run self');
-            await handle();
-            console.log('self done');
+            console.log('finish call run inner');
+            // await handle();
+            await Promise.resolve();
+            console.log('finish run outer');
         })();
     }
 };

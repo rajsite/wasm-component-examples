@@ -11,7 +11,9 @@
         "node": ">=24"
     },
     "scripts": {
-        "build": "turbo run build-wit build-wasm --log-order=grouped --continue=dependencies-successful",
+        "build": "turbo run build-wasm --log-order=grouped --continue=dependencies-successful",
+        "build-fs": "turbo run fs-compose#build-wasm --log-order=grouped",
+        "start-fs": "npm run -w examples/fs-compose start-wasmtime",
         "check": "turbo run check --log-order=grouped --continue=dependencies-successful",
         "pack": "turbo run pack --log-order=grouped --continue=dependencies-successful",
         "lint": "eslint .",

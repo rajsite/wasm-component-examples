@@ -285,6 +285,7 @@ class WriteOutputStream extends OutputStream {
 class Descriptor implements WasiDescriptor {
     // TODO created default value to satisfy type but should be unused
     constructor(public entry: Directory | File = new Directory()) {
+        console.log('start descriptor ctor');
         this.entry = entry;
     }
     appendViaStream(): WasiOutputStream {
@@ -495,6 +496,7 @@ class DirectoryEntryStream implements WasiDirectoryEntryStream {
     index: number;
     // TODO created default value to satisfy type but should be unused
     constructor(directory: Directory = new Directory()) {
+        console.log('start directoryentrystream ctor');
         this.entries = Object.entries(directory.files);
         this.index = 0;
     }
@@ -670,12 +672,16 @@ const root: Directory = new Directory({});
 
 export const preopens = {
     getDirectories: () => {
+        console.log('preopens run');
         return [[new Descriptor(root), '/']];
     }
 } satisfies typeof WasiFilesystemPreopens;
 
 export const types = {
-    filesystemErrorCode: () => undefined,
+    filesystemErrorCode: () => {
+        console.log('calls fs error code');
+        return undefined;
+    },
     Descriptor,
     DirectoryEntryStream,
 } satisfies typeof WasiFilesystemTypes;

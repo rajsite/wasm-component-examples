@@ -6,7 +6,9 @@ export const run: {
 } = {
     run: () => {
         void (async (): Promise<void> => {
+            console.log('start run inner');
             await handle();
+            console.log('finish run inner');
         })();
     }
 };
