@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "build-wit": "echo \"skip build wasm\"",
-    "build-wasm": "mkdirp dist && wac plug ../fs-export/dist/main.wasm --plug ../fs-read/dist/main.wasm -o dist/main.wasm",
+    "build-wasm": "mkdirp dist && wac compose --dep example:fs-export=../fs-export/dist/main.wasm --dep example:fs-read=../fs-read/dist/main.wasm -o dist/main.wasm composition.wac",
     "build": "npm run build-wit && npm run build-wasm",
     "start-wasmtime": "wasmtime run -S cli=y,http=y --dir . dist/main.wasm",
     "pack": "npm pack",

@@ -1,0 +1,8 @@
+
+// wac compose --dep example:fs-export=../fs-export/dist/main.wasm --dep example:fs-read=../fs-read/dist/main.wasm -o dist/main.wasm composition.wac
+package example:composition;
+
+let fs-read-impl = new example:fs-read {...};
+let fs-export-impl = new example:fs-export { ...fs-read-impl, ... };
+
+export fs-export-impl...;
